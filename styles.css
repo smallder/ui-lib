@@ -1,4 +1,5 @@
 * {
+	box-sizing: border-box;
 	line-height: inherit;
 	margin: 0;
 	padding: 0;
@@ -9,13 +10,19 @@
 }
 
 html {
-	background: #fff;
-	color: #333;
+	background: #aaa;
+	height: 100%;
 }
 body {
+	background-color: #fff;
+	color: #333;
 	font-family: 'Arial', sans-serif;
 	font-size: 14px;
 	line-height: 1.2;
+	margin: 0 auto;
+	min-height: 100%;
+	padding: 20px;
+	width: 800px;
 }
 
 h1,
@@ -102,4 +109,47 @@ input[type=image][disabled] {
 
 section {
 	margin-bottom: 2em;
+}
+
+/* Utils */
+.no-user-select {
+	-moz-user-select: none;
+	-o-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+/* List view */
+.view-list,
+.view-list ul {
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.view-list li {
+	margin: 0;
+	padding: 0;
+}
+.view-list {
+	height: 450px;
+	overflow: hidden;
+	width: 350px;
+}
+.view-list .item,
+.view-list .group-title {
+	padding: 8px 4px;
+}
+.view-list .item {
+	border: solid #ccc;
+	border-width: 1px 0 0 0;
+}
+.view-list .group-title {
+	background: #a1acb5;
+	color: #fff;
+	display: block;
+	padding-bottom: 4px;
+	padding-top: 4px;
+	text-shadow: 0 1px 0 #555;
 }

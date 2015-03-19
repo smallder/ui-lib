@@ -71,14 +71,28 @@ app.components.register(
 	}
 );
 
-/*app.components.register(
-	'listReach',
+app.components.register(
+	'list-user',
 	lib.component.List,
 	{
-		model: 'users',
-		mixins: [
-			lib.presenter.mixin.ListGroup,
-			lib.presenter.mixin.ListGroupFixed
-		]
+		model: 'user-2',
+		name: 'id',
+		store: 'users',
+		valueField: 'id',
+		titleField: 'firstname',
 	}
-);*/
+);
+
+
+app.components.register(
+	'list-grouped-user',
+	lib.component.ListGrouped,
+	{
+		model: 'user-2',
+		name: 'id',
+		store: 'users',
+		valueField: 'id',
+		titleField: 'firstname',
+		groupField: 'lastname'
+	}
+);
