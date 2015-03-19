@@ -88,9 +88,6 @@ button,
 input[type=button],
 input[type=submit],
 input[type=image] {
-	background-color: #000;
-	border: none;
-	color: #fff;
 	cursor: pointer;
 	padding: 0.5em;
 }
