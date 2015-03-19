@@ -4,21 +4,12 @@
 var lib = (function() {
 	var id = 0;
 	
-	function clone(/** Object */proto, /** ObjLiteral= */ownProperties){
-        function Clone(ownProperties){
-            for(var key in ownProperties) this[key] = ownProperties[key];
-        };
-        Clone.prototype = proto;
-        
-        return new Clone(ownProperties);
-    }
-	
 	return {
 		/**
 		 * Extends child with a parent
 		 * @param {Function} child Child constructor
 		 * @param {Function} parent Parent constructor
-		 * @param {Object} overrides Child members to override/add 
+		 * @param {Object} overrides Child members to override/add
 		 * @return {Function} Child constructor
 		 */
 		extends: function(child, parent, overrides) {
@@ -167,7 +158,7 @@ var lib = (function() {
 		
 		/**
 		* Provide drag events
-		* @param {jQuery} domElement Namespace
+		* @param {jQuery} domElement DOM element
 		* @return {Object}
 		*/
 		setDraggable: function(domElement) {
