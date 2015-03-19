@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>MVP Examples</title>
+		
+		<link href="styles.css" rel="stylesheet"/>
+		
+		<script src="jquery.min.js"></script>
+		<script src="lib.js"></script>
+		<script src="lib/Object.js"></script>
+		<script src="lib/mixins/Buildable.js"></script>
+		<script src="lib/mixins/Groupable.js"></script>
+		<script src="lib/mixins/ListableView.js"></script>
+		<script src="lib/mixins/Observable.js"></script>
+		<script src="lib/mixins/Renderable.js"></script>
+		<script src="lib/mixins/StorablePresenter.js"></script>
+		<script src="lib/Manager.js"></script>
+		<script src="lib/Application.js"></script>
+		<script src="lib/model/Base.js"></script>
+		<script src="lib/model/Record.js"></script>
+		<script src="lib/model/Recordset.js"></script>
+		<script src="lib/provider/Base.js"></script>
+		<script src="lib/provider/Array.js"></script>
+		<script src="lib/presenter/Base.js"></script>
+		<script src="lib/presenter/Field.js"></script>
+		<script src="lib/presenter/Select.js"></script>
+		<script src="lib/presenter/SelectGrouped.js"></script>
+		<script src="lib/view/Base.js"></script>
+		<script src="lib/view/Field.js"></script>
+		<script src="lib/view/Select.js"></script>
+		<script src="lib/view/SelectGrouped.js"></script>
+		<script src="lib/component/Base.js"></script>
+		<script src="lib/component/Field.js"></script>
+		<script src="lib/component/Select.js"></script>
+		<script src="lib/component/SelectGrouped.js"></script>
+	</head>
+	<body>
+		<script src="resources.js"></script>
+		
+		<h1>MVP Examples</h1>
+		<section>
+			<article>
+				<h2>Select with groups</h2>
+				<script>app.components.getInstance('select-grouped-user').render();</script>
+			</article>
+			<article>
+				<h2>Select</h2>
+				<script>app.components.getInstance('select-user').render();</script>
+			</article>
+			<article>
+				<h2>Text Field</h2>
+				<script>app.components.getInstance('field-firstname').render();</script>
+			</article>
+		</section>
+		
+		<!---->
+		<section>
+			<article>
+				<h2>Model 'user-2'</h2>
+				<p>Type text for model change</p>
+				<form id="user-edit">
+					<p>
+						<label>Firstname: <input type="text" name="firstname" value=""></label>
+					</p>
+					<p>
+						<label>Lastname: <input type="text" name="lastname" value=""></label>
+					</p>
+					<p>
+						<label>Gender: <input type="text" name="gender" value=""></label>
+					</p>
+				</form>
+				<script>
+					$('#user-edit input').keyup(function() {
+						var model = app.models.getInstance('user-2');
+						var data = model.getData();
+						data[$(this).attr('name')] = $(this).val();
+						model.setData(data);
+					}).each(function() {
+						$(this).val(
+							app.models.getInstance('user-2').getData()[
+								$(this).attr('name')
+							]
+						);
+					});
+				</script>
+			</article>
+		</section>
+		<!---->
+	</body>
+</html>
