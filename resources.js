@@ -27,6 +27,17 @@ app.models.register(
 );
 
 app.models.register(
+	'user-1',
+	lib.model.Record,
+	{
+		fields: ['id', 'firstname', 'lastname', 'gender'],
+		provider: new lib.provider.Array({
+			data: {id: 1, firstname: 'Остап', lastname: 'Бендер', gender: 'M'}
+		})
+	}
+);
+
+app.models.register(
 	'user-2',
 	lib.model.Record,
 	{
@@ -41,7 +52,7 @@ app.components.register(
 	'field',
 	lib.component.Field,
 	{
-		model: 'user-2',
+		model: 'user-1',
 		name: 'firstname'
 	}
 );

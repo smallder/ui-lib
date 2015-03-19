@@ -48,6 +48,7 @@
 		
 		<h1>MVP Examples</h1>
 		<section>
+			<hr/>
 			<article>
 				<h2>1. List with groups and floating headers grouped by lastname</h2>
 				<script>app.components.getInstance('list-grouped-floating').render();</script>
@@ -57,56 +58,59 @@
 				<h2>2. List with groups grouped by gender</h2>
 				<script>app.components.getInstance('list-grouped-simple').render();</script>
 			</article>
+			<hr/>
 			<article>
 				<h2>3. List without groups</h2>
 				<script>app.components.getInstance('list').render();</script>
 			</article>
+			<hr/>
 			<article>
 				<h2>4. Select with groups</h2>
 				<script>app.components.getInstance('select-grouped').render();</script>
 			</article>
+			<hr/>
 			<article>
 				<h2>5. Select</h2>
 				<script>app.components.getInstance('select').render();</script>
 			</article>
+			<hr/>
 			<article>
 				<h2>6. Text Field</h2>
 				<script>app.components.getInstance('field').render();</script>
+				
+				<section>
+					<article>
+						<h3>Model "user-1"</h3>
+						<p>Type text for model change</p>
+						<form id="user-edit">
+							<p>
+								<label>Firstname: <input type="text" name="firstname" value=""></label>
+							</p>
+							<p>
+								<label>Lastname: <input type="text" name="lastname" value=""></label>
+							</p>
+							<p>
+								<label>Gender: <input type="text" name="gender" value=""></label>
+							</p>
+						</form>
+						<script>
+							//Sorry, not MVP here :)
+							var model = app.models.getInstance('user-1');
+							$('#user-edit input').keyup(function() {
+								var data = model.getData();
+								data[$(this).attr('name')] = $(this).val();
+								model.setData(data);
+							}).each(function() {
+								$(this).val(
+									model.getData()[
+										$(this).attr('name')
+									]
+								);
+							});
+						</script>
+					</article>
+				</section>
 			</article>
 		</section>
-		
-		<!---->
-		<section>
-			<article>
-				<h2>Model 'user-2'</h2>
-				<p>Type text for model change</p>
-				<form id="user-edit">
-					<p>
-						<label>Firstname: <input type="text" name="firstname" value=""></label>
-					</p>
-					<p>
-						<label>Lastname: <input type="text" name="lastname" value=""></label>
-					</p>
-					<p>
-						<label>Gender: <input type="text" name="gender" value=""></label>
-					</p>
-				</form>
-				<script>
-					$('#user-edit input').keyup(function() {
-						var model = app.models.getInstance('user-2');
-						var data = model.getData();
-						data[$(this).attr('name')] = $(this).val();
-						model.setData(data);
-					}).each(function() {
-						$(this).val(
-							app.models.getInstance('user-2').getData()[
-								$(this).attr('name')
-							]
-						);
-					});
-				</script>
-			</article>
-		</section>
-		<!---->
 	</body>
 </html>
