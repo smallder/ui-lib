@@ -79,7 +79,11 @@ app.components.register(
 		name: 'id',
 		store: 'users',
 		valueField: 'id',
-		titleField: 'firstname',
+		titleField: 'lastname',
+		renderers: [[
+			lib.view.renderer.ListSuffix,
+			['firstname']
+		]]
 	}
 );
 

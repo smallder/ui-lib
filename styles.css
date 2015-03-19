@@ -134,6 +134,7 @@ section {
 }
 .view-list {
 	height: 450px;
+	max-width: 100%;
 	overflow: hidden;
 	width: 350px;
 }
