@@ -130,6 +130,8 @@ section {
 	padding: 0;
 }
 .view-list {
+}
+.view-list-wrap {
 	height: 450px;
 	max-width: 100%;
 	overflow: hidden;

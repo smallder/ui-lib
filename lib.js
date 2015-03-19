@@ -4,29 +4,38 @@
 var lib = (function() {
 	var id = 0;
 	
+	function clone(/** Object */proto, /** ObjLiteral= */ownProperties){
+        function Clone(ownProperties){
+            for(var key in ownProperties) this[key] = ownProperties[key];
+        };
+        Clone.prototype = proto;
+        
+        return new Clone(ownProperties);
+    }
+	
 	return {
 		/**
 		 * Extends child with a parent
 		 * @param {Function} child Child constructor
 		 * @param {Function} parent Parent constructor
-		 * @param {Object} override Child members to override/add 
+		 * @param {Object} overrides Child members to override/add 
 		 * @return {Function} Child constructor
 		 */
-		extends: function(child, parent, override) {
-			// for .extends(parent, override)
+		extends: function(child, parent, overrides) {
+			// for .extends(parent, overrides)
 			if (arguments.length == 2 && typeof parent == 'object') {
-				override = parent;
+				overrides = parent;
 				parent = child;
 				child = undefined;
 			}
 			
-			if (typeof override != 'object') {
-				override = {};
+			if (typeof overrides != 'object') {
+				overrides = {};
 			}
 			
 			if (child === undefined) {
-				child = override.hasOwnProperty('constructor')
-					? override.constructor
+				child = overrides.hasOwnProperty('constructor')
+					? overrides.constructor
 					: function() {
 						this.callParent('constructor', arguments);
 					};
@@ -37,6 +46,15 @@ var lib = (function() {
 			child.superClass = parent.prototype;
 			child.prototype = new donor();
 			child.prototype.constructor = child;
+			
+			for (var key in overrides) {
+				if (key == 'constructor') {
+					continue;
+				}
+				if (overrides.hasOwnProperty(key)) {
+					child.prototype[key] = overrides[key];
+				}
+			}
 			
 			child.prototype.callParent = function(method, args) {
 				var prototype = this.constructor.prototype;
@@ -49,15 +67,6 @@ var lib = (function() {
 				
 				return context ? context[method].apply(this, args || []) : undefined;
 			};
-			
-			for (var key in override) {
-				if (key == 'constructor') {
-					continue;
-				}
-				if (override.hasOwnProperty(key)) {
-					child.prototype[key] = override[key];
-				}
-			}
 			
 			return child;
 		},
@@ -142,7 +151,7 @@ var lib = (function() {
 		
 		/**
 		* Initialize namespace
-		* @param {String} Namespace
+		* @param {String} namespace Namespace
 		* @return {Object}
 		*/
 		ns: function(namespace) {
@@ -154,6 +163,55 @@ var lib = (function() {
 			};
 			
 			return obj;
+		},
+		
+		/**
+		* Provide drag events
+		* @param {jQuery} domElement Namespace
+		* @return {Object}
+		*/
+		setDraggable: function(domElement) {
+			var state = '';
+			var setState = function(action, event) {
+				switch (action) {
+					case 'hold':
+						state = 'wait';
+						break;
+					case 'move':
+						if (state == 'wait') {
+							trigger('dragstart', event);
+							state = 'drag';
+						} else if (state == 'drag') {
+							trigger('drag', event);
+						}
+						break;
+					case 'release':
+						if (state == 'drag') {
+							trigger('dragend', event);
+						}
+						state = '';
+						break;
+				}
+			};
+			var trigger = function(eventType, event) {
+				event.type = eventType;
+				domElement.trigger(event);
+			};
+			
+			domElement.on({
+				mousedown: function(event) {
+					setState('hold', event);
+				},
+				mousemove: function(event) {
+					setState('move', event);
+				},
+				mouseleave: function(event) {
+					setState('release', event);
+				},
+				mouseup: function(event) {
+					setState('release', event);
+				}
+			});
 		},
 		
 		/**
