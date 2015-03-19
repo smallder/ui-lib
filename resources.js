@@ -38,7 +38,7 @@ app.models.register(
 );
 
 app.components.register(
-	'field-firstname',
+	'field',
 	lib.component.Field,
 	{
 		model: 'user-2',
@@ -47,7 +47,7 @@ app.components.register(
 );
 
 app.components.register(
-	'select-user',
+	'select',
 	lib.component.Select,
 	{
 		model: 'user-2',
@@ -59,7 +59,7 @@ app.components.register(
 );
 
 app.components.register(
-	'select-grouped-user',
+	'select-grouped',
 	lib.component.SelectGrouped,
 	{
 		model: 'user-2',
@@ -72,7 +72,7 @@ app.components.register(
 );
 
 app.components.register(
-	'list-user',
+	'list',
 	lib.component.List,
 	{
 		model: 'user-2',
@@ -87,9 +87,26 @@ app.components.register(
 	}
 );
 
+app.components.register(
+	'list-grouped-simple',
+	lib.component.ListGrouped,
+	{
+		model: 'user-2',
+		name: 'id',
+		store: 'users',
+		valueField: 'id',
+		titleField: 'firstname',
+		groupField: 'gender',
+		groupsFloating: false,
+		renderers: [[
+			lib.view.renderer.ListSuffix,
+			['lastname']
+		]]
+	}
+);
 
 app.components.register(
-	'list-grouped-user',
+	'list-grouped-floating',
 	lib.component.ListGrouped,
 	{
 		model: 'user-2',
@@ -98,6 +115,7 @@ app.components.register(
 		valueField: 'id',
 		titleField: 'firstname',
 		groupField: 'lastname',
+		groupsFloating: true,
 		renderers: [[
 			lib.view.renderer.ListSuffix,
 			['lastname']
