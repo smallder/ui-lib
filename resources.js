@@ -93,6 +93,10 @@ app.components.register(
 		store: 'users',
 		valueField: 'id',
 		titleField: 'firstname',
-		groupField: 'lastname'
+		groupField: 'lastname',
+		renderers: [[
+			lib.view.renderer.ListSuffix,
+			['lastname']
+		]]
 	}
 );
