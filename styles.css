@@ -110,10 +110,6 @@ input[type=submit][disabled],
 input[type=image][disabled] {
 }
 
-section {
-	margin-bottom: 2em;
-}
-
 /* Utils */
 .no-user-select {
 	-moz-user-select: none;

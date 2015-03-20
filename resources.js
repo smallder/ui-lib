@@ -136,7 +136,6 @@ app.components.register(
 	}
 );
 
-
 app.components.register(
 	'list-grouped-floating-city',
 	lib.component.ListGrouped,

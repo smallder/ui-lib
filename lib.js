@@ -2,6 +2,10 @@
  * @var {Object} Root namespace of framework
  */
 var lib = (function() {
+	/**
+	 * @var {Integer} id
+	 * Unique ID counter
+	 */
 	var id = 0;
 	
 	return {
@@ -223,7 +227,7 @@ var lib = (function() {
 		 * @return {String}
 		 */
 		getId: function(prefix) {
-			return prefix + id++;
+			return (prefix || '') + id++;
 		}
 	};
 })();
