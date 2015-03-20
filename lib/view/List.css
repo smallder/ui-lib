@@ -1,0 +1,32 @@
+/* List view */
+.view-list,
+.view-list ul {
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.view-list {
+	cursor: pointer;
+}
+.view-list-wrap {
+	height: 400px;
+	max-width: 100%;
+	overflow: hidden;
+	position: relative;
+	width: 350px;
+}
+.view-list li {
+	margin: 0;
+	padding: 0;
+}
+.view-list .item {
+	border: solid #ccc;
+	border-width: 1px 0 0 0;
+	padding: 8px 4px;
+}
+.view-list .item-suffix {
+	font-weight: bold;
+	padding-left: .5em;
+}

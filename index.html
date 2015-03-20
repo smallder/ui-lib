@@ -5,6 +5,8 @@
 		<title>MVP Examples</title>
 		
 		<link href="styles.css" rel="stylesheet"/>
+		<link href="lib/view/List.css" rel="stylesheet"/>
+		<link href="lib/view/ListGrouped.css" rel="stylesheet"/>
 		
 		<script src="jquery.min.js"></script>
 		<script src="lib.js"></script>
@@ -46,36 +48,41 @@
 	<body>
 		<script src="resources.js"></script>
 		
-		<h1>MVP Examples</h1>
+		<h1>MVP components Examples</h1>
 		<section>
 			<hr/>
 			<article>
-				<h2>1. List with groups and floating headers grouped by lastname</h2>
-				<script>app.components.getInstance('list-grouped-floating').render();</script>
+				<h2>1. List with groups and floating headers grouped by lastname first letter</h2>
+				<script>app.components.getInstance('list-grouped-floating-lastname').render();</script>
 			</article>
 			<hr/>
 			<article>
-				<h2>2. List with groups grouped by gender</h2>
+				<h2>2. List with groups and floating headers grouped by city</h2>
+				<script>app.components.getInstance('list-grouped-floating-city').render();</script>
+			</article>
+			<hr/>
+			<article>
+				<h2>3. List with groups grouped by gender</h2>
 				<script>app.components.getInstance('list-grouped-simple').render();</script>
 			</article>
 			<hr/>
 			<article>
-				<h2>3. List without groups</h2>
+				<h2>4. List without groups</h2>
 				<script>app.components.getInstance('list').render();</script>
 			</article>
 			<hr/>
 			<article>
-				<h2>4. Select with groups</h2>
+				<h2>5. Select with groups</h2>
 				<script>app.components.getInstance('select-grouped').render();</script>
 			</article>
 			<hr/>
 			<article>
-				<h2>5. Select</h2>
+				<h2>6. Select</h2>
 				<script>app.components.getInstance('select').render();</script>
 			</article>
 			<hr/>
 			<article>
-				<h2>6. Text Field</h2>
+				<h2>7. Text Field</h2>
 				<script>app.components.getInstance('field').render();</script>
 				
 				<section>
