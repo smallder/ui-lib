@@ -102,18 +102,20 @@
 						</form>
 						<script>
 							//Sorry, not MVP here :)
-							var model = app.models.getInstance('user-1');
-							$('#user-edit input').keyup(function() {
-								var data = model.getData();
-								data[$(this).attr('name')] = $(this).val();
-								model.setData(data);
-							}).each(function() {
-								$(this).val(
-									model.getData()[
-										$(this).attr('name')
-									]
-								);
-							});
+							(function() {
+								var model = app.models.getInstance('user-1');
+								$('#user-edit input').keyup(function() {
+									var data = model.getData();
+									data[$(this).attr('name')] = $(this).val();
+									model.setData(data);
+								}).each(function() {
+									$(this).val(
+										model.getData()[
+											$(this).attr('name')
+										]
+									);
+								});
+							})();
 						</script>
 					</article>
 				</section>

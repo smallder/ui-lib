@@ -67,17 +67,16 @@ var lib = (function() {
 		},
 		
 		/**
-		 * Extends child with a parent
+		 * Adds mixins to target
 		 * @param {Function} target Target constructor
-		 * @param {Function} mixin[] Mixin constructors
+		 * @param {Function} mixin[] Mixins
 		 */
 		mixin: function(target) {
 			var mixins = Array.prototype.slice.call(arguments, 1);
 			
-			target.prototype.mixins = {};
 			for (var i = 0, len = mixins.length; i < len; i++) {
 				var mixin = mixins[i];
-				for (var key in mixin.prototype) {
+				for (var key in mixin) {
 					if (key == 'constructor') {
 						continue;
 					}
@@ -85,10 +84,9 @@ var lib = (function() {
 						continue;
 					}
 					if (target.prototype[key] === undefined) {
-						target.prototype[key] = mixin.prototype[key];
+						target.prototype[key] = mixin[key];
 					}
 				}
-				target.prototype.mixins[mixin.mixinId] = mixin;
 			}
 		},
 		
