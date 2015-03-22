@@ -17,7 +17,7 @@ var lib = (function() {
 		 * @return {Function} Child constructor
 		 */
 		extends: function(child, parent, overrides) {
-			// for .extends(parent, overrides)
+			// for extends(parent, overrides)
 			if (arguments.length == 2 && typeof parent == 'object') {
 				overrides = parent;
 				parent = child;
@@ -67,7 +67,7 @@ var lib = (function() {
 		},
 		
 		/**
-		 * Adds mixins to target
+		 * Adds mixins to the target
 		 * @param {Function} target Target constructor
 		 * @param {Function} mixin[] Mixins
 		 */
@@ -78,9 +78,6 @@ var lib = (function() {
 				var mixin = mixins[i];
 				for (var key in mixin) {
 					if (key == 'constructor') {
-						continue;
-					}
-					if (key == 'mixins') {
 						continue;
 					}
 					if (target.prototype[key] === undefined) {
