@@ -49,7 +49,16 @@ app.models.register(
 );
 
 app.components.register(
-	'field',
+	'field-a',
+	lib.component.Field,
+	{
+		model: 'user-1',
+		name: 'firstname'
+	}
+);
+
+app.components.register(
+	'field-b',
 	lib.component.Field,
 	{
 		model: 'user-1',

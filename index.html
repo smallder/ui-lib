@@ -52,18 +52,28 @@
 		<section>
 			<hr/>
 			<article>
-				<h2>1. List with groups and floating headers grouped by lastname first letter</h2>
-				<script>app.components.getInstance('list-grouped-floating-lastname').render();</script>
+				<h2>1. Text Field</h2>
+				<section>
+					<article>
+						<h3>Text Field A</h3>
+						<p>Type text to see how two fields are connected through the model.</p>
+						<script>app.components.getInstance('field-a').render();</script>
+					</article>
+					<article>
+						<h3>Text Field B</h3>
+						<script>app.components.getInstance('field-b').render();</script>
+					</article>
+				</section>
 			</article>
 			<hr/>
 			<article>
-				<h2>2. List with groups and floating headers grouped by city</h2>
-				<script>app.components.getInstance('list-grouped-floating-city').render();</script>
+				<h2>2. Select</h2>
+				<script>app.components.getInstance('select').render();</script>
 			</article>
 			<hr/>
 			<article>
-				<h2>3. List with groups grouped by gender</h2>
-				<script>app.components.getInstance('list-grouped-simple').render();</script>
+				<h2>3. Select with groups</h2>
+				<script>app.components.getInstance('select-grouped').render();</script>
 			</article>
 			<hr/>
 			<article>
@@ -72,53 +82,18 @@
 			</article>
 			<hr/>
 			<article>
-				<h2>5. Select with groups</h2>
-				<script>app.components.getInstance('select-grouped').render();</script>
+				<h2>5. List with groups grouped by gender</h2>
+				<script>app.components.getInstance('list-grouped-simple').render();</script>
 			</article>
 			<hr/>
 			<article>
-				<h2>6. Select</h2>
-				<script>app.components.getInstance('select').render();</script>
+				<h2>6. List with groups and floating headers grouped by city</h2>
+				<script>app.components.getInstance('list-grouped-floating-city').render();</script>
 			</article>
 			<hr/>
 			<article>
-				<h2>7. Text Field</h2>
-				<script>app.components.getInstance('field').render();</script>
-				
-				<section>
-					<article>
-						<h3>Model "user-1"</h3>
-						<p>Type text for model change</p>
-						<form id="user-edit">
-							<p>
-								<label>Firstname: <input type="text" name="firstname" value=""></label>
-							</p>
-							<p>
-								<label>Lastname: <input type="text" name="lastname" value=""></label>
-							</p>
-							<p>
-								<label>Gender: <input type="text" name="gender" value=""></label>
-							</p>
-						</form>
-						<script>
-							//Sorry, not MVP here :)
-							(function() {
-								var model = app.models.getInstance('user-1');
-								$('#user-edit input').keyup(function() {
-									var data = model.getData();
-									data[$(this).attr('name')] = $(this).val();
-									model.setData(data);
-								}).each(function() {
-									$(this).val(
-										model.getData()[
-											$(this).attr('name')
-										]
-									);
-								});
-							})();
-						</script>
-					</article>
-				</section>
+				<h2>7. List with groups and floating headers grouped by lastname first letter</h2>
+				<script>app.components.getInstance('list-grouped-floating-lastname').render();</script>
 			</article>
 		</section>
 	</body>
