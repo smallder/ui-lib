@@ -8,6 +8,23 @@ var lib = (function() {
 	 */
 	var id = 0;
 	
+	/**
+	 * Lookup in chain of prototypes of method with given name (from the current instance context) and call it
+	 * @param {String} method Parents method name
+	 * @param {Array} args Method arguments
+	 */
+	var callParent = function(method, args) {
+		var prototype = this.constructor.prototype;
+		var caller = this.callParent.caller;
+		var context = this.constructor.prototype;
+		do {
+			var stop = context.hasOwnProperty(method) && context[method] === caller;
+			context = context.constructor.superClass;
+		} while(context && !stop);
+		
+		return context ? context[method].apply(this, args || []) : undefined;
+	};
+	
 	return {
 		/**
 		 * Extends child with a parent
@@ -51,17 +68,7 @@ var lib = (function() {
 				}
 			}
 			
-			child.prototype.callParent = function(method, args) {
-				var prototype = this.constructor.prototype;
-				var caller = this.callParent.caller;
-				var context = this.constructor.prototype;
-				do {
-					var stop = context.hasOwnProperty(method) && context[method] === caller;
-					context = context.constructor.superClass;
-				} while(context && !stop);
-				
-				return context ? context[method].apply(this, args || []) : undefined;
-			};
+			child.prototype.callParent = callParent;
 			
 			return child;
 		},
